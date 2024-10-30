@@ -2,12 +2,20 @@ import boto3
 import time
 import os
 
+bucket_name = 's3-numeros_de_estudiante'
+
 # Crear cliente para S3 y EC2
 s3 = boto3.client('s3')
 ec2 = boto3.resource('ec2')
 cloudwatch_logs = boto3.client('logs')
 
-bucket_name = 'nombre-del-bucket-s3'
+def create_bucket_if_not_exists(bucket_name):
+    try:
+        s3.head_bucket(Bucket=bucket_name)
+        print(f'El bucket {bucket_name} ya existe.')
+    except:
+        s3.create_bucket(Bucket=bucket_name)
+        print(f'Bucket {bucket_name} creado.')
 
 def monitor_and_upload_logs(instance_id):
     instance = ec2.Instance(instance_id)
@@ -60,6 +68,9 @@ def log_event(message):
             'message': message
         }]
     )
+
+# Crear el bucket si no existe
+create_bucket_if_not_exists(bucket_name)
 
 # Asumiendo que la instancia ya está lanzada
 monitor_and_upload_logs('i-xxxxxxxxxxxxxxxxx')  # Reemplaza por el ID de tu instancia
