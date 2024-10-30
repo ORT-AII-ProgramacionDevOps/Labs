@@ -9,7 +9,7 @@ ec2_client = boto3.client('ec2')
 instance_params = {
     'ImageId': 'ami-06b21ccaeff8cd686',  
 #'InstanceType': 't2.micro',
-   # 'UserData': open('script.sh').read(),  # Cargar el script user_data
+    'UserData': open('script.sh').read(),  # Cargar el script user_data
     'MinCount': 1,
     'MaxCount': 1,  
     'SubnetId': 'subnet-0042388b5e53acc4e',
@@ -18,7 +18,9 @@ instance_params = {
                 'ResourceType': 'instance',
                 'Tags': [
                     {'Key': 'Name', 'Value': 'DevOps EC2 Instance'},
-                    {'Key': 'Owner', 'Value': 'gferradas'}
+                    {'Key': 'Owner', 'Value': 'gferradas'},
+                    {'Key': 'Env', 'Value': 'Production'}
+
                 ]
             }
         ]

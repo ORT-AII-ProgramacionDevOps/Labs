@@ -1,17 +1,6 @@
 import boto3
 import os
 
-# Obtener las credenciales de las variables de entorno
-#aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
-#aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-
-# Crear una sesión de boto3 con las credenciales de AWS
-#session = boto3.Session(
-    #aws_access_key_id=aws_access_key_id,
-   # aws_secret_access_key=aws_secret_access_key,
- #   region_name='us-east-1'
-#)
-
 # Crear un cliente de EC2
 ec2_client = boto3.client('ec2')
 
