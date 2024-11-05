@@ -5,12 +5,7 @@ import time
 ec2_client = boto3.client('ec2')
 ssm_client = boto3.client('ssm')
 ec2 = boto3.resource('ec2')  # Definir el cliente de recurso EC2
-command = 'ls -l / '
-
-# Crear un cliente de EC2
-ec2_client = boto3.client('ec2')
-ssm_client = boto3.client('ssm')
-command = 'ls -l / '
+command = 'ls -l /aaa '
 
 # Definir los parámetros para la instancia EC2
 instance_params = {
@@ -20,7 +15,7 @@ instance_params = {
     'MinCount': 1,
     'MaxCount': 1,  
     'IamInstanceProfile':{
-        'Arn': ''
+        'Name': 'LabInstanceProfile'
     }
 }
 
@@ -56,6 +51,7 @@ command_id = response['Command']['CommandId']
 
 # Esperar a que el comando termine
 time.sleep(5)
+
 # Obtener el resultado del comando
 output = ssm_client.get_command_invocation(
     CommandId=command_id,
