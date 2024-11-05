@@ -9,21 +9,25 @@ ssm = boto3.client('ssm')
 ec2 = boto3.client('ec2')
 
 # Parámetros
-bucket_name = 'tu-bucket-s3'
+bucket_name = '321r23uihr23uih2i3'
 logs_directory = '/data_logs'
 log_group = '/ec2/logs'
 log_stream = 'upload_logs'
-instance_id = 'tu-instancia-id'
 
-# Verificar si la instancia está etiquetada como "Configured"
-response = ec2.describe_tags(
+# Obtener el ID de las instancias que tienen el tag "Configured"
+response = ec2.describe_instances(
     Filters=[
-        {'Name': 'resource-id', 'Values': [instance_id]},
-        {'Name': 'key', 'Values': ['Status']},
-        {'Name': 'value', 'Values': ['Configured']}
+        {'Name': 'tag:Status', 'Values': ['Configured']}
     ]
 )
 
+instance_ids = [instance['InstanceId'] for reservation in response['Reservations'] for instance in reservation['Instances']]
+
+if not instance_ids:
+    print('No se encontraron instancias con el tag "Configured".')
+    exit(1)
+
+instance_id = instance_ids[0]  # Usar la primera instancia encontrada
 if not response['Tags']:
     print('La instancia no está etiquetada como "Configured".')
     exit(1)
