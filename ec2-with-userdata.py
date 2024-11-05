@@ -20,7 +20,7 @@ instance_params = {
     'MinCount': 1,
     'MaxCount': 1,  
     'IamInstanceProfile':{
-        'Arn': 'arn:aws:iam::339712737322:instance-profile/LabInstanceProfile'
+        'Arn': ''
     }
 }
 
