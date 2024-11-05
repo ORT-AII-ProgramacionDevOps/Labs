@@ -2,12 +2,23 @@ import boto3
 import time
 import os
 
-bucket_name = 's3-numeros_de_estudiante'
+bucket_name = '1497832jdew981'
 
 # Crear cliente para S3 y EC2
 s3 = boto3.client('s3')
 ec2 = boto3.resource('ec2')
 cloudwatch_logs = boto3.client('logs')
+ssm = boto3.client('ssm')
+
+def get_instance_id():
+    instances = ec2.instances.filter(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
+    instance = next(instances, None)
+    if instance:
+        print(f'ID de la instancia en ejecución: {instance.id}')
+        return instance.id
+    else:
+        print('No hay instancias en ejecución.')
+        return None
 
 def create_bucket_if_not_exists(bucket_name):
     try:
@@ -25,8 +36,16 @@ def monitor_and_upload_logs(instance_id):
     
     if configured_tag == 'Configured':
         # Monitorear el directorio `/data_logs` (esto normalmente se haría en la instancia)
-        logs_directory = '/data_logs/'
-        files_to_upload = os.listdir(logs_directory)
+        logs_directory = ssm.send_command(
+            InstanceIds=[instance_id],
+            DocumentName='AWS-RunShellScript',
+            Parameters={'commands': ['ls /data_logs']}
+        )['Command']['Output']
+        try:
+            files_to_upload = os.listdir(logs_directory)
+        except PermissionError as e:
+            print(f'Error de permiso: {e}')
+            return
         
         for file_name in files_to_upload:
             file_path = os.path.join(logs_directory, file_name)
@@ -72,5 +91,11 @@ def log_event(message):
 # Crear el bucket si no existe
 create_bucket_if_not_exists(bucket_name)
 
-# Asumiendo que la instancia ya está lanzada
-monitor_and_upload_logs('i-xxxxxxxxxxxxxxxxx')  # Reemplaza por el ID de tu instancia
+instance_id = get_instance_id()
+if instance_id:
+    monitor_and_upload_logs(instance_id)
+else:
+    print('No se puede monitorear ninguna instancia.')
+
+
+
