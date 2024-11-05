@@ -1,68 +1,34 @@
 import boto3
-import time
 import os
+import time
 
-bucket_name = '1497832jdew981'
-
-# Crear cliente para S3 y EC2
+# Configuración de AWS
 s3 = boto3.client('s3')
-ec2 = boto3.resource('ec2')
 cloudwatch_logs = boto3.client('logs')
 ssm = boto3.client('ssm')
+ec2 = boto3.client('ec2')
 
-def get_instance_id():
-    instances = ec2.instances.filter(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
-    instance = next(instances, None)
-    if instance:
-        print(f'ID de la instancia en ejecución: {instance.id}')
-        return instance.id
-    else:
-        print('No hay instancias en ejecución.')
-        return None
+# Parámetros
+bucket_name = 'tu-bucket-s3'
+logs_directory = '/data_logs'
+log_group = '/ec2/logs'
+log_stream = 'upload_logs'
+instance_id = 'tu-instancia-id'
 
-def create_bucket_if_not_exists(bucket_name):
-    try:
-        s3.head_bucket(Bucket=bucket_name)
-        print(f'El bucket {bucket_name} ya existe.')
-    except:
-        s3.create_bucket(Bucket=bucket_name)
-        print(f'Bucket {bucket_name} creado.')
+# Verificar si la instancia está etiquetada como "Configured"
+response = ec2.describe_tags(
+    Filters=[
+        {'Name': 'resource-id', 'Values': [instance_id]},
+        {'Name': 'key', 'Values': ['Status']},
+        {'Name': 'value', 'Values': ['Configured']}
+    ]
+)
 
-def monitor_and_upload_logs(instance_id):
-    instance = ec2.Instance(instance_id)
-    
-    # Verificar que la instancia tiene la etiqueta "Configured"
-    configured_tag = next((tag['Value'] for tag in instance.tags if tag['Key'] == 'Status'), None)
-    
-    if configured_tag == 'Configured':
-        # Monitorear el directorio `/data_logs` (esto normalmente se haría en la instancia)
-        logs_directory = ssm.send_command(
-            InstanceIds=[instance_id],
-            DocumentName='AWS-RunShellScript',
-            Parameters={'commands': ['ls /data_logs']}
-        )['Command']['Output']
-        try:
-            files_to_upload = os.listdir(logs_directory)
-        except PermissionError as e:
-            print(f'Error de permiso: {e}')
-            return
-        
-        for file_name in files_to_upload:
-            file_path = os.path.join(logs_directory, file_name)
-            
-            # Subir el archivo a S3
-            s3.upload_file(file_path, bucket_name, file_name)
-            print(f'Archivo {file_name} subido a {bucket_name}')
-            
-            # Registrar la subida en CloudWatch
-            log_event(f'Archivo {file_name} subido a S3 a las {time.ctime()}')
-    else:
-        print('La instancia no está configurada correctamente, no se pueden subir archivos')
+if not response['Tags']:
+    print('La instancia no está etiquetada como "Configured".')
+    exit(1)
 
 def log_event(message):
-    log_group = '/ec2/logs'
-    log_stream = 'upload_logs'
-    
     # Crear grupo de logs si no existe
     try:
         cloudwatch_logs.create_log_group(logGroupName=log_group)
@@ -78,24 +44,78 @@ def log_event(message):
     except cloudwatch_logs.exceptions.ResourceAlreadyExistsException:
         pass
     
-    # Publicar el evento en CloudWatch Logs
+    # Obtener el timestamp actual
+    timestamp = int(time.time() * 1000)
+    
+    # Enviar el evento de log a CloudWatch
     cloudwatch_logs.put_log_events(
         logGroupName=log_group,
         logStreamName=log_stream,
-        logEvents=[{
-            'timestamp': int(time.time() * 1000),
-            'message': message
-        }]
+        logEvents=[
+            {
+                'timestamp': timestamp,
+                'message': message
+            }
+        ]
     )
 
-# Crear el bucket si no existe
-create_bucket_if_not_exists(bucket_name)
+def upload_files_from_instance():
+    # Ejecutar comando en la instancia EC2 para listar archivos en /data_logs
+    response = ssm.send_command(
+        InstanceIds=[instance_id],
+        DocumentName='AWS-RunShellScript',
+        Parameters={'commands': [f'ls {logs_directory}']}
+    )
+    
+    command_id = response['Command']['CommandId']
+    
+    # Esperar a que el comando se ejecute y obtener la salida
+    time.sleep(5)
+    output = ssm.get_command_invocation(
+        CommandId=command_id,
+        InstanceId=instance_id
+    )
+    
+    if output['Status'] == 'Success':
+        files_to_upload = output['StandardOutputContent'].split('\n')
+        for file_name in files_to_upload:
+            if file_name:
+                file_path = os.path.join(logs_directory, file_name)
+                
+                # Descargar el archivo desde la instancia EC2
+                ssm_response = ssm.send_command(
+                    InstanceIds=[instance_id],
+                    DocumentName='AWS-RunShellScript',
+                    Parameters={'commands': [f'cat {file_path}']}
+                )
+                
+                command_id = ssm_response['Command']['CommandId']
+                time.sleep(5)
+                file_output = ssm.get_command_invocation(
+                    CommandId=command_id,
+                    InstanceId=instance_id
+                )
+                
+                if file_output['Status'] == 'Success':
+                    file_content = file_output['StandardOutputContent']
+                    
+                    # Guardar el archivo localmente
+                    local_file_path = f'/tmp/{file_name}'
+                    with open(local_file_path, 'w') as f:
+                        f.write(file_content)
+                    
+                    # Subir el archivo a S3
+                    s3.upload_file(local_file_path, bucket_name, file_name)
+                    print(f'Archivo {file_name} subido a {bucket_name}')
+                    
+                    # Registrar la subida en CloudWatch
+                    log_event(f'Archivo {file_name} subido a S3 a las {time.ctime()}')
+                else:
+                    print(f'Error al obtener el contenido del archivo {file_name}')
+    else:
+        print('Error al listar archivos en el directorio /data_logs')
 
-instance_id = get_instance_id()
-if instance_id:
-    monitor_and_upload_logs(instance_id)
-else:
-    print('No se puede monitorear ninguna instancia.')
-
-
-
+# Monitorear y subir archivos
+while True:
+    upload_files_from_instance()
+    time.sleep(60)  # Esperar 1 minuto antes de volver a verificar
