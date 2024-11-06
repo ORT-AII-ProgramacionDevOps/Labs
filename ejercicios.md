@@ -23,7 +23,7 @@
 1. Escriba un script que cree una instancia EC2 y esta tenga asociado el Instance Profile del rol LabRole.
 
 ## Ejercicio 8: Enviar un comando a una instancia EC2 usando SSM
-1. Escriba un script que envíe un comando a la instancia EC2 creada anteriormente. (ES NECESARIO REALIZAR EL EJERCICIO 7)
+1. Escriba un script que envíe un comando a la instancia EC2 creada anteriormente.
 
 ## Ejercicio 9: Crear una instancia EC2 con un UserData que cree un usuario llamado Test y un directorio dentro de /tmp
 1. Escriba un script que cree una instancia EC2 con un UserData que cree un usuario Test y una directorio dentro de /tmp.
