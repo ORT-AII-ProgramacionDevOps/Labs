@@ -29,12 +29,9 @@ while True:
     if instance_status['InstanceStatuses']:
         instance_state = instance_status['InstanceStatuses'][0]['InstanceState']['Name']
         system_status = instance_status['InstanceStatuses'][0]['SystemStatus']['Status']
-        instance_status = instance_status['InstanceStatuses'][0]['InstanceStatus']['Status']
         print(f'Estado de la instancia: {instance_state}')
         print()
         print(f'Estado del sistema: {system_status}')
-        print()
-        print(f'Estado de la instancia: {instance_status}')
         print()
         if instance_state == 'running' and system_status == 'ok' and instance_status == 'ok':
             break
