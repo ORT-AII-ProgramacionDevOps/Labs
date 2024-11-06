@@ -10,8 +10,8 @@ command = 'ls -l /aaa '
 # Definir los parámetros para la instancia EC2
 instance_params = {
     'ImageId': 'ami-06b21ccaeff8cd686',  
-    #'InstanceType': 't2.micro',
-    #'UserData': open('script.sh').read(),
+    'InstanceType': 't2.micro',
+    'UserData': open('userdata.sh').read(),
     'MinCount': 1,
     'MaxCount': 1,  
     'IamInstanceProfile':{
