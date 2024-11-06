@@ -1,5 +1,4 @@
 import boto3
-import os
 
 # Crear un cliente de EC2
 ec2_client = boto3.client('ec2')
