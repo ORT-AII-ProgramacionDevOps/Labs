@@ -23,5 +23,3 @@ sudo chmod 600 /home/newuser/.ssh/authorized_keys
 # Clean up
 sudo apt-get autoremove -y
 sudo apt-get clean
-
-echo "Userdata script completed."

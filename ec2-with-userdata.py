@@ -5,7 +5,7 @@ import time
 ec2_client = boto3.client('ec2')
 ssm_client = boto3.client('ssm')
 ec2 = boto3.resource('ec2')  # Definir el cliente de recurso EC2
-command = 'ls -l /aaa '
+command = 'id -u newuser'  
 
 # Definir los parámetros para la instancia EC2
 instance_params = {
@@ -60,14 +60,14 @@ output = ssm_client.get_command_invocation(
 
 # Verificar el estado del comando
 if output['Status'] == 'Success':
-    status = 'Configured'  # Definir el valor de status
+    status = 'Configured'  
     ec2.create_tags(
         Resources=[instance_id],
         Tags=[{'Key': 'Status', 'Value': status}]
     )
     print(f'Instancia etiquetada como {status}')
 else:
-    status = 'Misconfigured'  # Definir el valor de status
+    status = 'Misconfigured'  
     ec2.create_tags(
         Resources=[instance_id],
         Tags=[{'Key': 'Status', 'Value': status}]
