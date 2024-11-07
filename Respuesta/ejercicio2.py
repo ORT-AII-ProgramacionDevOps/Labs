@@ -4,8 +4,6 @@ bucket_name = 'TU_BUCKET_NAME'
 file_key = 'ruta/al/archivo/en/s3'
 download_path = 'ruta/local/donde/descargar/el/archivo'
 
-# Crear una sesión de boto3
-
 # Crear un cliente de S3
 s3 = boto3.client('s3')
 
