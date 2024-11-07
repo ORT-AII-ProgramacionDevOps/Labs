@@ -32,7 +32,7 @@
 1. Escriba un script que cree un Log Group y un Log Stream en CloudWatch.
 2. Envía un mensaje de prueba al Log Stream creado.
 
-## Ejercicio 11: Crear una instancia EC2 con Tags Name = Nro de estudiante, un UserData que cree un usuario con el nombre del alumno y un directorio dentro de /tmp/ que se llame nro-de-estudiante este UserData debe estar contenido dentro de un archivo .sh el cual el script debe leer y que con SSM validar que se creo el usuario y el directorio
+## Ejercicio 11: Crear una instancia EC2 con Tags, UserData y SSM para verificar 
 1. Escriba un script con una funcion cree una instancia EC2 con un Tag en la cual el valor Name debe ser igual a el nro de estudiante del alumno, un UserData que cree un usuario con el nombre del nombre del alumno y un directorio dentro de /tmp que se llame como el nro de estudiante este debe estar escrito en un script de bash en donde el script debe leer el contenido del mismo. Y por ultimo mediante SSM comprobar que las acciones se hayan efectuado con exito.
 
 ## Ejercicio 12: Generar un Bucket s3 y cada vez que se suba un archivo al bucket se debe generar una entrada en un logstream de nombre nro-de-alumno-logstream
