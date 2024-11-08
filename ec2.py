@@ -7,7 +7,7 @@ ec2_client = boto3.client('ec2')
 instance_params = {
     'ImageId': 'ami-06b21ccaeff8cd686',  
     'MinCount': 1,
-    'MaxCount': 1,
+    'MaxCount': 1
 }
 
 # Crear la instancia EC2
