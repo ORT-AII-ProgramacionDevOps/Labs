@@ -1,8 +1,8 @@
 import boto3
 
-bucket_name = 'TU_BUCKET_NAME'
-file_key = 'ruta/al/archivo/en/s3'
-download_path = 'ruta/local/donde/descargar/el/archivo'
+bucket_name = 'dwijdisojdaois'
+file_key = 'snicolasg/home/sysadmin/DevOps/python/aws/file.txt'
+download_path = '/home/gferradas/script-de-userdata'
 
 # Crear un cliente de S3
 s3 = boto3.client('s3')
