@@ -21,9 +21,9 @@ instance_params = {
 
 # Crear la instancia EC2
 response = ec2_client.run_instances(**instance_params)
-instance_id = response['Instances'][0]['InstanceId']
+print (response['Instances'][0]['InstanceId'])
 
-# Esperar a que la instancia esté en estado 'running'
+""" # Esperar a que la instancia esté en estado 'running'
 while True:
     instance_status = ec2_client.describe_instance_status(InstanceIds=[instance_id])
     if instance_status['InstanceStatuses']:
@@ -69,4 +69,4 @@ else:
         Resources=[instance_id],
         Tags=[{'Key': 'Status', 'Value': status}]
     )
-    print(f'Instancia etiquetada como {status}')
+    print(f'Instancia etiquetada como {status}') """
