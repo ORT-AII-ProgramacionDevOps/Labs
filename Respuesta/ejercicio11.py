@@ -1,9 +1,6 @@
 import boto3
 
 def create_and_check_instance(nroestudiante, nombre, ami_id, script):
-    # Leer el contenido del script desde un archivo
-    with open(script, 'r') as file:
-        user_data_script = file.read()
 
     # Crear instancia EC2
     ec2 = boto3.client('ec2')
@@ -22,7 +19,7 @@ def create_and_check_instance(nroestudiante, nombre, ami_id, script):
                 ]
             }
         ],
-        UserData=user_data_script
+        UserData=open(script).read()
     )
 
     instance_id = response['Instances'][0]['InstanceId']
