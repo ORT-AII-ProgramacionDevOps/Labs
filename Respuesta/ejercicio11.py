@@ -1,6 +1,6 @@
 import boto3
 
-def create_and_check_instance(nroestudiante, nombre, ami_id, script):
+def create_and_check_instance(nroestudiante, nombre, ami_id):
     script= "userdata.sh"
     # Crear instancia EC2
     ec2 = boto3.client('ec2')
@@ -60,4 +60,4 @@ def create_and_check_instance(nroestudiante, nombre, ami_id, script):
     print(f"Resultado de la comprobación del directorio: {output_dir['StandardOutputContent']}")
 
 # Ejemplo de uso
-create_and_check_instance("12345", "nombre_del_alumno", "ami-0abcdef1234567890", 'script.sh')
+create_and_check_instance("12345", "nombre_del_alumno", "ami-0abcdef1234567890")
