@@ -1,7 +1,7 @@
 import boto3
 
 def create_and_check_instance(nroestudiante, nombre, ami_id):
-    script= "userdata.sh"
+    script = "userdata.sh"
     # Crear instancia EC2
     ec2 = boto3.client('ec2')
     response = ec2.run_instances(
