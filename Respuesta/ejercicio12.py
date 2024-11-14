@@ -4,24 +4,38 @@ import time
 # Configuración de AWS
 s3_client = boto3.client('s3')
 logs_client = boto3.client('logs')
-file_name = 'archivo.txt'
+file_name = 'ejercicio1.py'
 
 
 def setup_and_upload():
     # Parámetros
     bucket_name = 'mi-bucket-ejercicio12'
-    log_group_name = 'nro-de-alumno-loggroup'
-    log_stream_name = 'nro-de-alumno-logstream'
+    log_group_name = 'nro-de-estudiante'
+    log_stream_name = 'nro-de-estudiante'
 
     def create_bucket(bucket_name):
-        # Crear bucket S3
-        s3_client.create_bucket(Bucket=bucket_name)
+        # Verificar si el bucket ya existe
+        existing_buckets = s3_client.list_buckets()
+        if not any(bucket['Name'] == bucket_name for bucket in existing_buckets['Buckets']):
+            # Crear bucket S3
+            s3_client.create_bucket(Bucket=bucket_name)
+        else:
+            print(f'El bucket "{bucket_name}" ya existe.')
 
     # Crear log group
-    logs_client.create_log_group(logGroupName=log_group_name)
+    # Verificar si el log group ya existe
+    existing_log_groups = logs_client.describe_log_groups(logGroupNamePrefix=log_group_name)
+    if not any(log_group['logGroupName'] == log_group_name for log_group in existing_log_groups['logGroups']):
+        logs_client.create_log_group(logGroupName=log_group_name)
+    else:
+        print(f'El log group "{log_group_name}" ya existe.')
 
-    # Crear log stream
-    logs_client.create_log_stream(logGroupName=log_group_name, logStreamName=log_stream_name)
+    # Verificar si el log stream ya existe
+    existing_log_streams = logs_client.describe_log_streams(logGroupName=log_group_name, logStreamNamePrefix=log_stream_name)
+    if not any(log_stream['logStreamName'] == log_stream_name for log_stream in existing_log_streams['logStreams']):
+        logs_client.create_log_stream(logGroupName=log_group_name, logStreamName=log_stream_name)
+    else:
+        print(f'El log stream "{log_stream_name}" ya existe.')
 
     # Función para subir archivo y loguear
     def upload_file_and_log(file_name, bucket, log_group, log_stream):
