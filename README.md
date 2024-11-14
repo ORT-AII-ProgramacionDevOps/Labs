@@ -36,4 +36,4 @@
 1. Escriba un script con una funcion que cree una instancia EC2 con un Tag en la cual el valor Name debe ser igual a el nro de estudiante del alumno, un UserData que cree un usuario con el nombre del nombre del alumno y un directorio dentro de /tmp que se llame como el nro de estudiante este debe estar escrito en un script de bash en donde el script debe leer el contenido del mismo. Y por ultimo mediante SSM comprobar que las acciones se hayan efectuado con exito.
 
 ## Ejercicio 12: Generar un Bucket S3 subir un archivo y generar entrada en un logstream
-1. Escriba un script que con una funcion que cree un bucket s3 a su vez que un logroup y logstream que de nombre tenga el nro de estudiante y cada vez que se suba un archivo a s3 se debe generar una entrada en el logstream con el siguiente mensaje: se subio el archivo "Nombre_de_archivo".
+1. Escriba un script que con una funcion que cree un bucket s3 a su vez que un logroup y logstream que de nombre tenga el nro de estudiante y cuando se suba un archivo a s3 se debe generar una entrada en el logstream con el siguiente mensaje: se subio el archivo  "Nombre_de_archivo" con el timestamp de la fecha de hoy.
