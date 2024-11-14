@@ -7,18 +7,18 @@ logs_client = boto3.client('logs')
 file_name = 'ejercicio1.py'
 
 
-def setup_and_upload():
+def main():
     # Parámetros
     bucket_name = 'mi-bucket-ejercicio12'
     log_group_name = 'nro-de-estudiante'
     log_stream_name = 'nro-de-estudiante'
 
-    def create_bucket(bucket_name):
+    def crear_bucket(bucket_name):
         # Verificar si el bucket ya existe
         existing_buckets = s3_client.list_buckets()
         if not any(bucket['Name'] == bucket_name for bucket in existing_buckets['Buckets']):
             # Crear bucket S3
-            s3_client.create_bucket(Bucket=bucket_name)
+            s3_client.crear_bucket(Bucket=bucket_name)
         else:
             print(f'El bucket "{bucket_name}" ya existe.')
 
@@ -38,7 +38,7 @@ def setup_and_upload():
         print(f'El log stream "{log_stream_name}" ya existe.')
 
     # Función para subir archivo y loguear
-    def upload_file_and_log(file_name, bucket, log_group, log_stream):
+    def subir_archivo(file_name, bucket, log_group, log_stream):
         # Subir archivo a S3
         s3_client.upload_file(file_name, bucket, file_name)
 
@@ -56,8 +56,8 @@ def setup_and_upload():
         )
 
     # Crear bucket y subir archivo
-    create_bucket(bucket_name)
-    upload_file_and_log(file_name, bucket_name, log_group_name, log_stream_name)
+    crear_bucket(bucket_name)
+    subir_archivo(file_name, bucket_name, log_group_name, log_stream_name)
 
 # Llamar a la función principal
-setup_and_upload()
+main()
