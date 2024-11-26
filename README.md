@@ -37,3 +37,8 @@
 
 ## Ejercicio 12: Generar un Bucket S3 subir un archivo y generar entrada en un logstream
 1. Escriba un script que con una funcion que cree un bucket s3 a su vez que un logroup y logstream que de nombre tenga el nro de estudiante y cuando se suba un archivo a s3 se debe generar una entrada en el logstream con el siguiente mensaje: se subio el archivo  "Nombre_de_archivo" con el timestamp de la fecha de hoy.
+
+
+## Ejercicio 13
+
+1. Escriba un script que cree un bucket de nombre al azar y un log stream y un log group que tengan tambien un nombre al azar que cuando el usuario quiera subir un archivo este deba decir cual archivo quiere subir y se debe generar una entrada en el logstream con la fecha de hoy y el mensaje de "Se subio el archivo x"
