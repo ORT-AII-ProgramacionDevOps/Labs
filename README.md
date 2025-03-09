@@ -55,11 +55,3 @@
     ```sh
     git --version
     ```
-
-## Ejercicios Git
-
-Para ver los ejercicios de Git, consulta el archivo [Ejercicios Git](./Ejercicios/Git/Ejercicios.md).
-
-## Ejercicios Boto3
-
-Para ver los ejercicios de Boto3, consulta el archivo [Ejercicios Boto3](./Ejercicios/boto3/Ejercicios.md).
