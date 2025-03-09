@@ -55,3 +55,11 @@
     ```sh
     git --version
     ```
+
+    ## Cómo instalar Visual Studio Code
+
+    1. Descarga el instalador de Visual Studio Code desde el [sitio oficial](https://code.visualstudio.com/Download).
+
+    2. Ejecuta el instalador y sigue las instrucciones del asistente de instalación.
+
+    3. Una vez completada la instalación, abre Visual Studio Code desde el menú de inicio.
