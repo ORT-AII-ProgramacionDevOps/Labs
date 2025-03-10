@@ -1,5 +1,8 @@
 # Ejercicios para empezar a trabajar con Boto3
 
+## Recursos adicionales
+- [Guía de inicio rápido de Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
+
 ## Ejercicio 1: Subir un archivo a S3
 1. Crea un bucket de S3
 2. Escriba un script que suba un archivo a tu bucket.
