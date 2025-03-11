@@ -63,3 +63,40 @@
 2. Ejecuta el instalador y sigue las instrucciones del asistente de instalación.
 
 3. Una vez completada la instalación, abre Visual Studio Code desde el menú de inicio.
+
+## Cómo instalar la CLI de AWS
+
+### En Windows
+
+1. Descarga el instalador de la CLI de AWS desde el [sitio oficial](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+
+2. Ejecuta el instalador y sigue las instrucciones del asistente de instalación.
+
+3. Una vez completada la instalación, abre una terminal y verifica la instalación con el siguiente comando:
+    ```sh
+    aws --version
+    ```
+
+### En Linux
+
+1. Abre una terminal.
+
+2. Descarga el paquete de instalación usando `curl`:
+    ```sh
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    ```
+
+3. Descomprime el paquete:
+    ```sh
+    unzip awscliv2.zip
+    ```
+
+4. Ejecuta el instalador:
+    ```sh
+    sudo ./aws/install
+    ```
+
+5. Verifica la instalación con el siguiente comando:
+    ```sh
+    aws --version
+    ```

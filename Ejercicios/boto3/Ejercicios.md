@@ -1,7 +1,6 @@
 # Ejercicios para empezar a trabajar con Boto3
 
 ## Recursos adicionales
-- [Instalación de AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 - [Guía de inicio rápido de Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 
 ## Ejercicio 1: Subir un archivo a S3
