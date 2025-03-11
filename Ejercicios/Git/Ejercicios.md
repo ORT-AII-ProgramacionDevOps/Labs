@@ -26,8 +26,9 @@
 ## Ejercicio 5: Commitear los scripts y subirlos a nuestro repositorio local
 1. Genere un commit con un mensaje que diga "Subida de scripts de bash" y subalo a su repositorio local
 
-## Ejercicio 6: Suba los scripts al repositorio remoto
-1. Haga un push con nuestros cambios al repositorio remoto en github  
 
+## Ejercicio 6: Mergear cambios desde la rama bash a la rama main 
+1. Realice un merge de la rama bash a la rama main para enviar los cambios pusheados en el ejercicio anterior
 
-
+## Ejercicio 7: Pushe los cambios hacia el repositorio remoto
+1. Envie los cambios realizados en el repositorio local hacia el repositorio remoto mediante un push

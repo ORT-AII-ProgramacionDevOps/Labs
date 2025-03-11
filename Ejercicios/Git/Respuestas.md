@@ -43,8 +43,16 @@
     git commit -m "Subida de scripts de bash"
     ```
 
-## Ejercicio 6: Suba los scripts al repositorio remoto
-1. Haz un push con tus cambios al repositorio remoto en GitHub.
+## Ejercicio 6: Realice un Merge de la rama bash a la rama main 
+1. Cambia a la rama `main`.
     ```sh
-    git push origin bash
+    git checkout main
+    ```
+2. Realiza el merge de la rama `bash` a la rama `main`.
+    ```sh
+    git merge bash
+    ```
+## Ejercicio 7: Pushe los cambios hacia el repositorio remoto
+    ```sh
+    git push
     ```
