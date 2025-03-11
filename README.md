@@ -19,7 +19,7 @@
     ```sh
     wsl --install
     ```
-    se instala Ubuntu como distribución predeterminada.
+    Se instala Ubuntu como distribución predeterminada.
 
 3. Una vez instalada, abre la distribución desde el menú de inicio y sigue las instrucciones de configuración.
 
