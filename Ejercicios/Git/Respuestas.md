@@ -10,70 +10,41 @@
     git config --global user.email "tuemail@example.com"
     ```
 
-## Ejercicio 2: Realizar un Commit
-1. Crea un nuevo archivo y añádele contenido.
-    ```sh
-    echo "Contenido del archivo" > archivo.txt
-    ```
-2. Añade el archivo al área de preparación (staging area).
-    ```sh
-    git add archivo.txt
-    ```
-3. Realiza un commit con un mensaje descriptivo.
-    ```sh
-    git commit -m "Añadir archivo.txt con contenido inicial"
-    ```
-
-## Ejercicio 3: Ver el Estado del Repositorio
-1. Modifica el archivo `hola.txt`.
-    ```sh
-    echo "Nueva línea" >> hola.txt
-    ```
-2. Verifica el estado del repositorio.
-    ```sh
-    git status
-    ```
-
-## Ejercicio 4: Ver el Historial de Commits
-1. Revisa el historial de commits.
-    ```sh
-    git log
-    ```
-
-## Ejercicio 5: Crear y Cambiar de Rama
-1. Crea una nueva rama llamada `nueva-rama`.
-    ```sh
-    git branch nueva-rama
-    ```
-2. Cambia a la nueva rama.
-    ```sh
-    git checkout nueva-rama
-    ```
-
-## Ejercicio 6: Fusionar Ramas
-1. Cambia de vuelta a la rama principal (`main` o `master`).
-    ```sh
-    git checkout main
-    ```
-2. Fusiona la rama `nueva-rama` con la rama principal.
-    ```sh
-    git merge nueva-rama
-    ```
-
-## Ejercicio 7: Clonar un Repositorio
-1. Clona un repositorio remoto.
+## Ejercicio 2: Crear Repositorio y clonar repositorio
+1. Crea un repositorio en GitHub.
+2. Clona el repositorio en tu máquina local.
     ```sh
     git clone https://github.com/usuario/repositorio.git
     ```
 
-## Ejercicio 8: Actualizar el Repositorio Local
-1. Obtén los últimos cambios del repositorio remoto.
+## Ejercicio 3: Crear Rama llamada bash
+1. Crea una rama llamada `bash`.
     ```sh
-    git pull origin main
+    git branch bash
+    ```
+2. Cambia a la rama `bash`.
+    ```sh
+    git checkout bash
     ```
 
-## Ejercicio 9: Enviar Cambios al Repositorio Remoto
-1. Envía tus commits al repositorio remoto.
+## Ejercicio 4: Subir scripts a repositorio remoto
+1. Mueve los scripts creados hacia el repositorio clonado.
     ```sh
-    git push origin main
+    mv /ruta/de/scripts/* /ruta/del/repositorio/
+    ```
+2. Añade los scripts al área de preparación.
+    ```sh
+    git add .
+    ```
+
+## Ejercicio 5: Commitear los scripts y subirlos a nuestro repositorio local
+1. Genera un commit con un mensaje que diga "Subida de scripts de bash".
+    ```sh
+    git commit -m "Subida de scripts de bash"
+    ```
+
+## Ejercicio 6: Suba los scripts al repositorio remoto
+1. Haz un push con tus cambios al repositorio remoto en GitHub.
+    ```sh
+    git push origin bash
     ```
