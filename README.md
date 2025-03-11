@@ -83,7 +83,7 @@
 
 2. Descarga el paquete de instalación usando `curl`:
     ```sh
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
     ```
 
 3. Descomprime el paquete:
