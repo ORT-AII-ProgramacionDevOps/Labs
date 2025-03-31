@@ -32,3 +32,43 @@
 
 ## Ejercicio 7: Pushe los cambios hacia el repositorio remoto
 1. Envie los cambios realizados en el repositorio local hacia el repositorio remoto mediante un push
+
+## Ejercicio 8: Resolver Conflictos de Ramas (Local)
+
+### Paso 1: Crear el repositorio
+1. Inicializa un nuevo repositorio local.
+2. Crea un archivo inicial y realiza un commit.
+
+### Paso 2: Crear la rama `feature` y modificar el archivo
+1. Crea una nueva rama llamada `feature` y cámbiate a ella.
+2. Modifica el archivo y realiza un commit.
+
+### Paso 3: Volver a `master` y modificar el archivo
+1. Cambia de vuelta a la rama `master`.
+2. Modifica el archivo y realiza un commit.
+
+### Paso 4: Intentar hacer merge y resolver el conflicto
+1. Intenta hacer un merge de la rama `feature` en `master`.
+2. Resuelve el conflicto manualmente editando el archivo.
+3. Una vez resuelto, añade los cambios y realiza un commit.
+
+
+## Ejercicio 9: Resolver Conflictos de Ramas (Remoto)
+
+### Paso 1: Clonar el repositorio remoto
+1. Clona un repositorio remoto:
+
+### Paso 2: Crear y trabajar en la rama `feature`
+1. Crea una nueva rama llamada `feature` y cámbiate a ella.
+2. Modifica un archivo y realiza un commit.
+3. Empuja los cambios al repositorio remoto.
+
+### Paso 3: Simular cambios en la rama `master` (en el remoto)
+1. Cambia a la rama `master` y realiza modificaciones.
+2. Empuja los cambios al repositorio remoto.
+
+### Paso 4: Hacer pull de los cambios remotos y resolver el conflicto
+1. Cambia a la rama `feature` y haz un pull de los cambios de `master`.
+2. Resuelve el conflicto manualmente editando el archivo.
+3. Una vez resuelto, añade los cambios y realiza un commit.
+4. Empuja los cambios resueltos al repositorio remoto.
