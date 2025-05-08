@@ -1,6 +1,6 @@
 import boto3
 
-bucket_name = 'dwijdisojdaois'
+bucket_name = 'test-bucket-prog-devops-2025'
 file_key = 'script-de-userdata'
 download_path = '/home/gferradas/script-de-userdata'
 
