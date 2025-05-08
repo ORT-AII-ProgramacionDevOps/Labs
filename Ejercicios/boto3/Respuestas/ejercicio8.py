@@ -2,10 +2,13 @@ import boto3
 import time
 
 # Configura el cliente de SSM
+ec2_client = boto3.client('ec2', region_name='us-east-1')
 ssm_client = boto3.client('ssm', region_name='us-east-1')
 
+response = ec2_client.describe_instances()
+
 # ID de la instancia EC2
-instance_id = 'i-0abcd1234efgh5678'
+instance_id = response['Reservations'][0]['Instances'][0]['InstanceId']
 
 # Comando que se enviará a la instancia
 command = "echo 'Hola, mundo!'"
