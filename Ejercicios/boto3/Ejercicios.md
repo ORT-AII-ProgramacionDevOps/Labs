@@ -20,7 +20,7 @@
 1. Escriba un script que elimine un objeto de un bucket específico.
 
 ## Ejercicio 5: Crear una instancia EC2
-### Parte 1: Crear una instancia EC2 básica
+### Parte 1: Crear una instancia EC2 
 1. Escriba un script que cree una instancia EC2.
 
 ### Parte 2: Obtener el ID de una instancia EC2
