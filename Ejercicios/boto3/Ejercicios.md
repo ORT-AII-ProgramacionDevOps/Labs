@@ -26,12 +26,9 @@
 ### Parte 2: Obtener el ID de una instancia EC2
 1. Escriba un script que obtenga y muestre el ID de una instancia EC2 específica.
 
-### Parte 3: Crear una instancia con un Instance Profile
-1. Escriba un script que cree una instancia EC2 asociada al Instance Profile del rol LabRole.
-
 ## Ejercicio 6: Enviar un comando a una instancia EC2 usando SSM
 ### Parte 1: Crear una instancia EC2
-1. Cree una instancia EC2.
+1. Escriba un script que cree una instancia EC2 asociada al Instance Profile del rol LabRole.
 
 ### Parte 2: Enviar un comando y extraer el resultado
 1. Envíe un comando `echo "Hello world"` a la instancia EC2 creada anteriormente y extraiga el resultado.
