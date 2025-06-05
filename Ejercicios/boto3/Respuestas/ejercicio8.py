@@ -1,37 +1,34 @@
 import boto3
-import time
 
-# Configura el cliente de SSM
+# Configura el cliente de SSM y EC2
 ec2_client = boto3.client('ec2', region_name='us-east-1')
 ssm_client = boto3.client('ssm', region_name='us-east-1')
 
 response = ec2_client.describe_instances()
-
-# ID de la instancia EC2
 instance_id = response['Reservations'][0]['Instances'][0]['InstanceId']
 
-# Comando que se enviará a la instancia
+# Espera a que la instancia esté en estado 'running'
+waiter = ec2_client.get_waiter('instance_running')
+waiter.wait(InstanceIds=[instance_id])
+
 command = "echo 'Hola, mundo!'"
 
-# Enviar el comando a la instancia EC2
 response = ssm_client.send_command(
     InstanceIds=[instance_id],
     DocumentName="AWS-RunShellScript",
     Parameters={'commands': [command]}
 )
 
-# Obtener el Command ID
 command_id = response['Command']['CommandId']
 
-# Esperar a que el comando se ejecute
-time.sleep(5)
+# Espera a que el comando termine usando waiter personalizado
+while True:
+    output = ssm_client.get_command_invocation(
+        CommandId=command_id,
+        InstanceId=instance_id
+    )
+    if output['Status'] in ['Success', 'Failed', 'Cancelled', 'TimedOut']:
+        break
 
-# Obtener el resultado del comando
-output = ssm_client.get_command_invocation(
-    CommandId=command_id,
-    InstanceId=instance_id
-)
-
-# Imprimir el output del comando
 print("Output:")
 print(output['StandardOutputContent'])
