@@ -16,3 +16,11 @@ response = ec2_client.run_instances(**instance_params)
 # Imprimir la información de la instancia creada
 for instance in response['Instances']:
     print(f"Instancia creada con ID: {instance['InstanceId']}")
+
+# Parte 2 
+
+# Describe la instancia EC2 específica
+response = ec2_client.describe_instances()
+
+# Obtiene el ID de la instancia
+print(response['Reservations'][0]['Instances'][0]['InstanceId'])

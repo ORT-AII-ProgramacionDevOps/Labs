@@ -38,14 +38,7 @@
     - Cree un usuario llamado `Test`.
     - Cree el directorio dentro de `/tmp/nro-de-estudiante`.
 
-## Ejercicio 8: Trabajar con CloudWatch Logs
-### Parte 1: Crear un Log Group y un Log Stream
-1. Escriba un script que cree un Log Group y un Log Stream en CloudWatch.
-
-### Parte 2: Enviar un mensaje de prueba
-1. Envíe un mensaje de prueba al Log Stream creado.
-
-## Ejercicio 9: Crear una base de datos RDS y conectarse desde una instancia EC2
+## Ejercicio 8: Crear una base de datos RDS y conectarse desde una instancia EC2
 ### Parte 1: Configurar el Security Group
 1. Cree un Security Group que permita el acceso al puerto 3306 (MySQL) desde una instancia EC2.
 
