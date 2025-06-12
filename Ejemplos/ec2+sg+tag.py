@@ -41,7 +41,7 @@ instance = ec2.run_instances(
     echo "Hello, World!" > /var/www/html/index.html
     """,
     IamInstanceProfile={
-        'Arn': 'arn:aws:iam::788011961042:instance-profile/LabInstanceProfile'  # Cambia por tu perfil de instancia IAM si es necesario
+        'Name': 'LabInstanceProfile'  # Cambia por tu perfil de instancia IAM si es necesario
     }
 )
 instance_id = instance["Instances"][0]["InstanceId"]
