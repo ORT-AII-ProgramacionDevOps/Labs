@@ -1,34 +1,37 @@
 import boto3
+import time
 
-# Configura el cliente de SSM y EC2
-ec2_client = boto3.client('ec2', region_name='us-east-1')
-ssm_client = boto3.client('ssm', region_name='us-east-1')
+ec2 = boto3.client('ec2')
+ssm = boto3.client('ssm')
 
-response = ec2_client.describe_instances()
-instance_id = response['Reservations'][0]['Instances'][0]['InstanceId']
+# Parte 1: Crear una instancia EC2 asociada al Instance Profile del rol LabRole
+response = ec2.run_instances(
+    ImageId='ami-06b21ccaeff8cd686',
+    MinCount=1,
+    MaxCount=1,
+    InstanceType='t2.micro',
+    IamInstanceProfile={'Name': 'LabInstanceProfile'},
+)
+instance_id = response['Instances'][0]['InstanceId']
+print(f"Instancia creada con ID: {instance_id}")
 
-# Espera a que la instancia esté en estado 'running'
-waiter = ec2_client.get_waiter('instance_running')
-waiter.wait(InstanceIds=[instance_id])
+# Esperar a que la instancia esté en estado running
+ec2.get_waiter('instance_status_ok').wait(InstanceIds=[instance_id])
 
-command = "echo 'Hola, mundo!'"
-
-response = ssm_client.send_command(
+# Parte 2: Enviar comando y extraer resultado
+command = 'echo "Hello world"'
+response = ssm.send_command(
     InstanceIds=[instance_id],
     DocumentName="AWS-RunShellScript",
     Parameters={'commands': [command]}
 )
-
 command_id = response['Command']['CommandId']
 
-# Espera a que el comando termine usando waiter personalizado
+# Esperar resultado
 while True:
-    output = ssm_client.get_command_invocation(
-        CommandId=command_id,
-        InstanceId=instance_id
-    )
+    output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instance_id)
     if output['Status'] in ['Success', 'Failed', 'Cancelled', 'TimedOut']:
         break
-
+    time.sleep(2)
 print("Output:")
 print(output['StandardOutputContent'])

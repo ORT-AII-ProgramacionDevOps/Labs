@@ -35,19 +35,21 @@
 
 ## Ejercicio 7: Crear una instancia EC2 con UserData
 1. Escriba un script que cree una instancia EC2 con un UserData que:
-    - Cree un usuario llamado `Test`.
-    - Cree el directorio dentro de `/tmp/nro-de-estudiante`.
+    - Instale el paquete de apache (httpd).
+    - Inicialize el servicio.
 
-## Ejercicio 8: Crear una base de datos RDS y conectarse desde una instancia EC2
-### Parte 1: Configurar el Security Group
-1. Cree un Security Group que permita el acceso al puerto 3306 (MySQL) desde una instancia EC2.
+## Ejercicio 8: Crear un Security Group permitiendo trafico web
+1. Escriba un script que cree un SG que permita el trafico web desde cualquier direccion IP (0.0.0.0/0)
+2. Asocie este security group a la instancia creada anteriormente.
+3. Navegue a la ip publica de la instancia para confirmar que el servicio se esta exponiendo correctamente.
 
-### Parte 2: Crear una base de datos RDS
-1. Escriba un script que cree una base de datos RDS MySQL utilizando el Security Group creado.
+### Opcional
 
-### Parte 3: Configurar la instancia EC2
-1. Lanza una instancia EC2 en la misma VPC que la base de datos RDS.
-2. Instale un cliente MySQL en la instancia EC2.
+Genere un archivo index.html e instalelo en el DocumentRoot de apache para mostrar un contenido distinto al default
 
-### Parte 4: Conectarse a la base de datos
-1. Conéctese a la base de datos RDS desde la instancia EC2 utilizando el cliente MySQL.
+## Ejercicio 9: Crear una Base MySQL en RDS 
+
+1. Escriba un script que cree una base de datos con el motor MySQL
+2. El usuario debera llamarse admin
+3. La password **NO** debera estar directamente en el codigo
+
