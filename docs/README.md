@@ -139,3 +139,5 @@ Estos ejercicios están pensados para practicar tanto el uso de AWS con Python (
 # Extras
 
 Este directorio donde hay materiales extra que veremos a lo largo del curso Como CDK, CI/CD y mas
+
+[Repo](https://github.com/ORT-AII-ProgramacionDevOps/extras)
