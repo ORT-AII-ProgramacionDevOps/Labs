@@ -135,6 +135,6 @@ En este repositorio encontrarás ejercicios prácticos para DevOps organizados e
 
 Estos ejercicios están pensados para practicar tanto el uso de AWS con Python (boto3) como el manejo de control de versiones con Git, y pueden ser ejecutados y adaptados según las necesidades del curso.
 
-# Fun :D
+# Extras
 
 Este directorio donde hay materiales extra que veremos a lo largo del curso Como CDK, CI/CD y mas
