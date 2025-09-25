@@ -69,23 +69,6 @@
 
 En este repositorio encontrarás ejercicios prácticos para DevOps organizados en la carpeta `Ejercicios/`.
 
-### Ejercicios de Boto3 (`Ejercicios/boto3/`)
-- **Enunciados:** En `Ejercicios/boto3/Ejercicios.md` se encuentran los enunciados de los ejercicios, que cubren:
-    - Subida, descarga, listado y eliminación de archivos en S3
-    - Creación y manejo de instancias EC2 (incluyendo UserData y SSM)
-    - Creación y asociación de Security Groups
-    - Creación de bases de datos MySQL en RDS usando variables de entorno para credenciales
-- **Respuestas:** Los scripts de ejemplo para cada ejercicio están en `Ejercicios/boto3/Respuestas/ejercicioN.py` (donde N es el número de ejercicio).
-
-### Ejercicios de Git (`Ejercicios/Git/`)
-- **Enunciados:** En `Ejercicios/Git/Ejercicios.md` se encuentran ejercicios para practicar:
-    - Configuración inicial de Git
-    - Creación y manejo de repositorios y ramas
-    - Subida de scripts y manejo de conflictos (locales y remotos)
-- **Respuestas:** Las soluciones y comandos sugeridos están en `Ejercicios/Git/Respuestas.md`.
-
-Estos ejercicios están pensados para practicar tanto el uso de AWS con Python (boto3) como el manejo de control de versiones con Git, y pueden ser ejecutados y adaptados según las necesidades del curso.
-
 ---
 
 ## Cómo instalar la CLI de AWS
@@ -124,3 +107,34 @@ Estos ejercicios están pensados para practicar tanto el uso de AWS con Python (
     ```sh
     aws --version
     ```
+---
+# Ejercicios
+
+## Prerequisitos
+
+- **Python**
+- **Git**
+- **Cuenta de github**
+- **Acceso a aws academy**
+
+## Git
+- **Enunciados:** En `Ejercicios/Git/Ejercicios.md` se encuentran ejercicios para practicar:
+    - Configuración inicial de Git
+    - Creación y manejo de repositorios y ramas
+    - Subida de scripts y manejo de conflictos (locales y remotos)
+- **Respuestas:** Las soluciones y comandos sugeridos están en `Ejercicios/Git/Respuestas.md`.
+
+## Boto3
+- **Enunciados:** En `Ejercicios/boto3/Ejercicios.md` se encuentran los enunciados de los ejercicios, que cubren:
+    - Subida, descarga, listado y eliminación de archivos en S3
+    - Creación y manejo de instancias EC2 (incluyendo UserData y SSM)
+    - Creación y asociación de Security Groups
+    - Creación de bases de datos MySQL en RDS usando variables de entorno para credenciales
+- **Respuestas:** Los scripts de ejemplo para cada ejercicio están en `Ejercicios/boto3/Respuestas/ejercicioN.py` (donde N es el número de ejercicio).
+
+
+Estos ejercicios están pensados para practicar tanto el uso de AWS con Python (boto3) como el manejo de control de versiones con Git, y pueden ser ejecutados y adaptados según las necesidades del curso.
+
+# Fun :D
+
+Este directorio donde hay materiales extra que veremos a lo largo del curso Como CDK, CI/CD y mas
