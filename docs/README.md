@@ -115,7 +115,8 @@ En este repositorio encontrarás ejercicios prácticos para DevOps organizados e
 - **Python**
 - **Git**
 - **Cuenta de github**
-- **Acceso a aws academy**
+- **AWS CLI**
+- **Acceso a AWS academy**
 
 ## Git
 - **Enunciados:** En `Ejercicios/Git/Ejercicios.md` se encuentran ejercicios para practicar:
