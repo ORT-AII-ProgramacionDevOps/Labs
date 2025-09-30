@@ -19,21 +19,16 @@
 ## Ejercicio 3: Crear Rama llamada bash 
 1. Cree una rama llamada bash en donde se va a subir los scripts de bash creados hasta ahora en el curso
 
-## Ejercicio 4: Subir scripts a repositorio remoto
-1. Mover los scripts creados hacia el repositorio clonado anteriormente
-2. Suba los scripts creados para la resolucion de los ejercicios
-
-## Ejercicio 5: Commitear los scripts y subirlos a nuestro repositorio local
+## Ejercicio 4: Commitear los scripts y subirlos a nuestro repositorio local
 1. Genere un commit con un mensaje que diga "Subida de scripts de bash" y subalo a su repositorio local
 
-
-## Ejercicio 6: Mergear cambios desde la rama bash a la rama main 
+## Ejercicio 5: Mergear cambios desde la rama bash a la rama main 
 1. Realice un merge de la rama bash a la rama main para enviar los cambios pusheados en el ejercicio anterior
 
-## Ejercicio 7: Pushe los cambios hacia el repositorio remoto
+## Ejercicio 6: Pushe los cambios hacia el repositorio remoto
 1. Envie los cambios realizados en el repositorio local hacia el repositorio remoto mediante un push
 
-## Ejercicio 8: Resolver Conflictos de Ramas (Local)
+## Ejercicio 7: Resolver Conflictos de Ramas (Local)
 
 ### Paso 1: Crear el repositorio
 1. Inicializa un nuevo repositorio local.
@@ -53,7 +48,7 @@
 3. Una vez resuelto, añade los cambios y realiza un commit.
 
 
-## Ejercicio 9: Resolver Conflictos de Ramas (Remoto)
+## Ejercicio 8: Resolver Conflictos de Ramas (Remoto)
 
 ### Paso 1: Clonar el repositorio remoto
 1. Clona un repositorio remoto:

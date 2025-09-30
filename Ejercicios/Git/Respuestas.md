@@ -32,26 +32,15 @@
     git checkout bash
     ```
 
-## Ejercicio 4: Subir scripts a repositorio remoto
-1. Mueve los scripts creados hacia el repositorio clonado.
-   
-    ```sh
-    mv /ruta/de/scripts/* /ruta/del/repositorio/
-    ```
-2. Añade los scripts al área de preparación.
-   
-    ```sh
-    git add .
-    ```
-
-## Ejercicio 5: Commitear los scripts y subirlos a nuestro repositorio local
+## Ejercicio 4: Commitear los scripts y subirlos a nuestro repositorio local
 1. Genera un commit con un mensaje que diga "Subida de scripts de bash".
    
     ```sh
+    git add .
     git commit -m "Subida de scripts de bash"
     ```
 
-## Ejercicio 6: Realice un Merge de la rama bash a la rama main 
+## Ejercicio 5: Realice un Merge de la rama bash a la rama main 
 1. Cambia a la rama `main`.
    
     ```sh
@@ -62,12 +51,12 @@
     ```sh
     git merge bash
     ```
-## Ejercicio 7: Pushe los cambios hacia el repositorio remoto
+## Ejercicio 6: Pushe los cambios hacia el repositorio remoto
    
     git push
 
 
-## Ejercicio 8: Resolver Conflictos de Ramas (Local)
+## Ejercicio 7: Resolver Conflictos de Ramas (Local)
 
 ### Paso 1: Crear el repositorio
 1. Inicializa un nuevo repositorio local.
@@ -115,7 +104,7 @@
     git commit -m "Conflicto resuelto entre master y feature"
     ```
 
-## Ejercicio 9: Resolver Conflictos de Ramas (Remoto)
+## Ejercicio 8: Resolver Conflictos de Ramas (Remoto)
 
 ### Paso 1: Clonar el repositorio remoto
 1. Clona el repositorio remoto.
