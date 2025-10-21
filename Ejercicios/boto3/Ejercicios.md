@@ -35,17 +35,16 @@
 
 ## Ejercicio 7: Crear una instancia EC2 con UserData
 1. Escriba un script que cree una instancia EC2 con un UserData que:
-    - Instale el paquete de apache (httpd).
-    - Inicialize el servicio.
+    - Instale el paquete de apache (`httpd`).
+    - Inicialice y habilite el servicio (`systemctl start/enable httpd`).
+    - Personalice el archivo `/var/www/html/index.html` para mostrar un contenido propio.
+    - Asigne el tag `Name: webserver-devops` a la instancia creada.
 
 ## Ejercicio 8: Crear un Security Group permitiendo trafico web
-1. Escriba un script que cree un SG que permita el trafico web desde cualquier direccion IP (0.0.0.0/0)
-2. Asocie este security group a la instancia creada anteriormente.
-3. Navegue a la ip publica de la instancia para confirmar que el servicio se esta exponiendo correctamente.
-
-### Opcional
-
-Genere un archivo index.html e instalelo en el DocumentRoot de apache para mostrar un contenido distinto al default
+1. Escriba un script que:
+    - Cree un Security Group que permita tráfico web (puerto 80) desde cualquier dirección IP (`0.0.0.0/0`).
+    - Asocie este Security Group a la instancia EC2 creada en el ejercicio anterior (buscando el tag `webserver-devops`).
+    - Navegue a la IP pública de la instancia para confirmar que el servicio web está accesible.
 
 ## Ejercicio 9: Crear una Base MySQL en RDS 
 
