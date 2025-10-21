@@ -18,5 +18,11 @@ response = ec2.run_instances(
     IamInstanceProfile={'Name': 'LabInstanceProfile'},
     UserData=user_data
 )
+
+# Agregar tag Name: webserver-devops
 instance_id = response['Instances'][0]['InstanceId']
-print(f"Instancia creada con ID: {instance_id}")
+ec2.create_tags(
+    Resources=[instance_id],
+    Tags=[{'Key': 'Name', 'Value': 'webserver-devops'}]
+)
+print(f"Instancia creada con ID: {instance_id} y tag 'webserver-devops'")
