@@ -52,3 +52,16 @@
 2. El usuario debera llamarse admin
 3. La password **NO** debera estar directamente en el codigo
 
+## Ejercicio 10: Crear y leer un parametro en SSM Parameter Store
+
+1. Escriba un script que cree un parametro en SSM Parameter Store.
+2. El nombre del parametro debe ser `/app/dev/database_url`.
+3. El valor puede ser uno de ejemplo, como una URL de conexion ficticia.
+4. Luego de crearlo, lea el parametro y muestre su valor por pantalla.
+
+## Ejercicio 11: Crear y leer un secreto en AWS Secrets Manager
+
+1. Escriba un script que cree un secreto en AWS Secrets Manager.
+2. El nombre del secreto debe ser `app/dev/api-key`.
+3. El valor del secreto puede ser una API key de ejemplo.
+4. Luego de crearlo, lea el secreto y muestre su valor por pantalla.

@@ -36,14 +36,14 @@
 
 ### Paso 2: Crear la rama `feature` y modificar el archivo
 1. Crea una nueva rama llamada `feature` y cámbiate a ella.
-2. Modifica el archivo y realiza un commit.
+2. Modifica exactamente la misma línea del archivo y realiza un commit.
 
 ### Paso 3: Volver a `master` y modificar el archivo
-1. Cambia de vuelta a la rama `master`.
-2. Modifica el archivo y realiza un commit.
+1. Cambia de vuelta a la rama `main` o `master`, según corresponda en tu repositorio.
+2. Modifica exactamente la misma línea del archivo, pero con otro contenido, y realiza un commit.
 
 ### Paso 4: Intentar hacer merge y resolver el conflicto
-1. Intenta hacer un merge de la rama `feature` en `master`.
+1. Intenta hacer un merge de la rama `feature` en `main` o `master`.
 2. Resuelve el conflicto manualmente editando el archivo.
 3. Una vez resuelto, añade los cambios y realiza un commit.
 
@@ -59,11 +59,50 @@
 3. Empuja los cambios al repositorio remoto.
 
 ### Paso 3: Simular cambios en la rama `master` (en el remoto)
-1. Cambia a la rama `master` y realiza modificaciones.
+1. Cambia a la rama `main` o `master` y realiza modificaciones sobre la misma línea que cambiaste en `feature`.
 2. Empuja los cambios al repositorio remoto.
 
 ### Paso 4: Hacer pull de los cambios remotos y resolver el conflicto
-1. Cambia a la rama `feature` y haz un pull de los cambios de `master`.
+1. Cambia a la rama `feature` y haz un pull de los cambios de `main` o `master`.
 2. Resuelve el conflicto manualmente editando el archivo.
 3. Una vez resuelto, añade los cambios y realiza un commit.
 4. Empuja los cambios resueltos al repositorio remoto.
+
+## Ejercicio 9: Forzar un conflicto de merge de forma guiada e interactiva
+
+### Objetivo
+1. Generar un conflicto real y repetible entre dos ramas modificando la misma línea de un archivo.
+2. Observar el estado del repositorio antes, durante y después de resolver el conflicto.
+
+### Paso 1: Crear el repositorio de prueba
+1. Inicializa un repositorio nuevo.
+2. Crea un archivo llamado `app.txt` con este contenido:
+   - `color=azul`
+   - `puerto=8080`
+3. Realiza un commit inicial.
+
+### Paso 2: Crear una rama y cambiar una línea
+1. Crea la rama `feature-login` y cámbiate a ella.
+2. Cambia la línea `color=azul` por `color=verde`.
+3. Realiza un commit.
+
+### Paso 3: Volver a la rama principal y generar el conflicto
+1. Vuelve a `main` o `master`.
+2. Cambia la misma línea `color=azul` por `color=rojo`.
+3. Realiza un commit.
+
+### Paso 4: Ejecutar el merge y analizar el conflicto
+1. Ejecuta el merge de `feature-login` sobre la rama actual.
+2. Ejecuta `git status`.
+3. Abre el archivo y analiza las marcas `<<<<<<<`, `=======` y `>>>>>>>`.
+
+### Paso 5: Resolver el conflicto manualmente
+1. Edita el archivo dejando un único valor final para la línea `color=`.
+2. Agrega el archivo resuelto.
+3. Realiza el commit de merge.
+
+### Paso 6: Hacerlo interactivo en clase
+1. Un alumno puede trabajar en la rama `feature-login` y otro en `main`.
+2. Antes del merge, pídeles que anticipen si Git podrá unir los cambios automáticamente o no.
+3. Durante el conflicto, pídeles que expliquen qué representa cada bloque dentro del archivo.
+4. Después de resolverlo, comparen el historial con `git log --oneline --graph --all`.
