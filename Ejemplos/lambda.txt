@@ -1,0 +1,33 @@
+Ejemplo de invoke con AWS CLI:
+
+aws lambda invoke \
+  --function-name sample-lambda \
+  --cli-binary-format raw-in-base64-out \
+  --payload '{"nombre":"Guillermo","accion":"saludar","cantidad":3}' \
+  response.json
+
+Ver respuesta:
+
+cat response.json
+
+Ejemplo de invoke con despedida:
+
+aws lambda invoke \
+  --function-name sample-lambda \
+  --cli-binary-format raw-in-base64-out \
+  --payload '{"nombre":"Guillermo","accion":"despedir","cantidad":1}' \
+  response.json
+
+Ejemplo de curl para Lambda Function URL:
+
+curl -X POST \
+  "https://abcde12345.lambda-url.us-east-1.on.aws/" \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Guillermo","accion":"saludar","cantidad":3}'
+
+Ejemplo de curl con despedida:
+
+curl -X POST \
+  "https://abcde12345.lambda-url.us-east-1.on.aws/" \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Guillermo","accion":"despedir","cantidad":1}'
